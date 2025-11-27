@@ -10,7 +10,7 @@ const app = express();
 
 // Enable CORS for React frontend
 app.use(cors({
-  origin: 'http://localhost:3000', // React app URL
+  origin: 'https://l-and-d-tech-store.gamer.gd', // React app URL
   credentials: true
 }));
 
@@ -20,8 +20,8 @@ app.use(express.json());
 const sessionStore = new MySQLStore({}, pool.promise ? pool.promise() : pool); // ensure pool supports promise
 
 app.use(session({
-  key: 'session_cookie_name',
-  secret: 'your_secret_key',
+  key: 'session',
+  secret: 'djhcvsAHy36228',
   store: sessionStore,
   resave: false,
   saveUninitialized: false,
@@ -39,7 +39,7 @@ app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   // Replace with your user check
-  const [rows] = await pool.execute('SELECT * FROM users WHERE title=?', [username]);
+  const [rows] = await pool.execute('SELECT * FROM users WHERE name=?', [username]);
   if (rows.length > 0) {
     req.session.user = { id: rows[0].id, username: rows[0].title };
     return res.json({ message: 'Logged in successfully' });
@@ -52,7 +52,7 @@ app.post('/login', async (req, res) => {
 app.post('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) return res.status(500).json({ message: 'Logout failed' });
-    res.clearCookie('session_cookie_name');
+    res.clearCookie('cookie');
     res.json({ message: 'Logged out successfully' });
   });
 });
@@ -66,4 +66,4 @@ app.get('/session', (req, res) => {
 app.use('/api/users', usersRouter);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Backend running at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Backend running at https://l-and-d-tech-store.gamer.gd`));

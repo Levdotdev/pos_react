@@ -15,10 +15,10 @@ router.get('/', async (req, res, next) => {
 // POST create
 router.post('/', async (req, res, next) => {
   try {
-    const { title, about, body } = req.body;
+    const { title, about, body, developer } = req.body;
     const [result] = await pool.execute(
       'INSERT INTO users (title, about, body, developer) VALUES (?, ?, ?, ?)',
-      [title, about, body, "Lev" ]
+      [title, about, body, developer ]
     );
     const [rows] = await pool.execute('SELECT * FROM users WHERE id = ?', [result.insertId]);
     res.status(201).json(rows[0]);
@@ -30,10 +30,10 @@ router.post('/', async (req, res, next) => {
 // PUT update
 router.put('/:id', async (req, res, next) => {
   try {
-    const { title, about, body } = req.body;
+    const { title, about, body, developer } = req.body;
     await pool.execute(
       'UPDATE users SET title=?, about=?, body=?, developer=? WHERE id=?',
-      [title, about, body, "Lev", req.params.id]
+      [title, about, body, developer , req.params.id]
     );
     const [rows] = await pool.execute('SELECT * FROM users WHERE id = ?', [req.params.id]);
     res.json(rows[0]);
