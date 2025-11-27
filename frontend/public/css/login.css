@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-.auth-wrapper {
+body {
     font-family: 'Poppins', sans-serif;
     font-weight: 300; 
     background-size: 150%;
@@ -60,7 +60,7 @@
 
 .welcome-content {
     text-align: center;
-    padding: 2.5rem 3rem; 
+    padding: 2.5rem 3rem;  /* <<< Dati: 3rem 4rem */
     border-radius: 10px; 
     background-color: rgba(0, 0, 0, 0.7); 
     backdrop-filter: blur(5px);
@@ -68,15 +68,15 @@
 }
 
 .logo-container {
-    font-size: 3rem;
+    font-size: 3rem; /* <<< Dati: 4rem */
     color: #FFFFFF;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* <<< Dati: 1.5rem */
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); 
 }
 
 .welcome-content h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* <<< Dati: 3rem */
     margin-bottom: 1rem;
     color: #FFFFFF;
     font-weight: 700;
@@ -415,7 +415,7 @@ input:focus {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
 
-    .auth-wrapper {
+    body {
         background-size: cover;
         background-attachment: fixed;
         animation: none;
@@ -612,16 +612,16 @@ input:focus {
 
 iframe {
     position: fixed;
-    bottom: 20px; 
-    right: 20px;   
-    width: 350px;
+    bottom: 20px;     /* distance from bottom */
+    right: 20px;      /* distance from right edge */
+    width: 350px;     /* resize as needed */
     height: 250px;
     border: 2px solid #fff;
     border-radius: 10px;
-    z-index: 10; 
+    z-index: 10;      /* make sure it stays on top of background but under modal */
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
 .modal-wrapper {
-    z-index: 999;
+    z-index: 999; /* keep modal on top of iframe */
 }
